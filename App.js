@@ -1,20 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import { Map, Modal, Panel } from './components';
+import { Map, Modal, Panel, Input } from './components';
 
 export default function App() {
   const [points, setPoints] = useState([])
+  const [temporalPoint, setTemporalPoint] = useState({})
+  const [nombre, setNombre] = useState('')
+  const [visibility, setVisibility] = useState(false)
+
+
   const handleLongPress = ({ nativeEvent }) => {
-    const newPoint = points.concat({ coordinate: nativeEvent.coordinate })
-    setPoints(newPoint)
+    setTemporalPoint(nativeEvent.coordinate)
+    setVisibility(true)
   }
-  console.log(points)
+  const handleChangeText = text => {
+    setNombre(text)
+  }
   return (
     <View style={styles.container}>
       <Map onLongPress={handleLongPress}/>
       <Panel />
-      <Modal />
+      <Modal visibility={visibility}>
+        <Input title="Nombre" placeholder="Nombre del punto" onChangeText={handleChangeText}/>
+      </Modal>
       <StatusBar style="auto" />
     </View>
   );
