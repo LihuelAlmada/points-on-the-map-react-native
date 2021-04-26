@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, FlatList, Text, View, StyleSheet, Dimensions } from 'react-native';
 
-export default ({ points }) => {
+export default ({ points, closeModal }) => {
   return(
     <>
       <View style={styles.list}>
@@ -12,7 +12,7 @@ export default ({ points }) => {
         />
       </View>
       <View style={styles.button}>
-        <Button title='Cerrar' />
+        <Button title='Cerrar' onPress={closeModal}/>
       </View>
     </>
   )

@@ -41,13 +41,13 @@ export default function App() {
       <Modal visibility={visibility}>
         {visibilityFilter === 'new_point' 
           ? 
-          <>
+          <View style={styles.form}>
             <Input title="Nombre" placeholder="Nombre del punto" onChangeText={handleChangeText}/>
             <Button title="Aceptar" onPress={handleSubmit}/>
             <Button title="Cancelar" onPress={handleCancel}/>
-          </>
+          </View>
           :
-          <List points={points} />
+          <List points={points} closeModal={() => setVisibility(false)}/>
         }
       </Modal>
       <StatusBar style="auto" />
@@ -56,6 +56,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  form:{
+    padding: 15,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
