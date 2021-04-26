@@ -1,17 +1,17 @@
 import React from 'react';
 import { Button, FlatList, Text, View, StyleSheet, Dimensions } from 'react-native';
 
-export default ({ puntos }) => {
+export default ({ points }) => {
   return(
     <>
       <View style={styles.list}>
         <FlatList 
-          data={puntos.map(x => x.name)} 
-          renderItem={({ item })=> <Text>{item}</Text>}
+          data={points.map(x => x.name)} 
+          renderItem={({ item }) => <View style={styles.item}><Text>{item}</Text></View>}
           keyExtractor={item => item}
         />
       </View>
-      <View>
+      <View style={styles.button}>
         <Button title='Cerrar' />
       </View>
     </>
@@ -19,8 +19,18 @@ export default ({ puntos }) => {
 }
 
 const styles = StyleSheet.create({
+  button: {
+    paddingBottom: 15,
+  },
   list: {
-    height: Dimensions.get('window').height -350,
+    height: Dimensions.get('window').height -250,
+  },
+  item: {
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    height: 50,
+    justifyContent: 'center',
+    padding: 15,
   }
 })
 
